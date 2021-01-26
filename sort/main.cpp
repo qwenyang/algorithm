@@ -3,7 +3,7 @@
 void BubbleSort(int* const pArray,const int nLen);
 void QuickSortList(int* const pArray, const int nLen);
 void HeapSort(int* const pArray, int nLen);
-
+void MergeSortList(int* const pArray, int nLen);
 int main() {
     int iNum=0;
     int arrList[1000]={0};
@@ -14,7 +14,8 @@ int main() {
         printf("start sort: \n");
         //BubbleSort(arrList, iNum);
         //QuickSortList(arrList, iNum);
-        HeapSort(arrList, iNum);
+        //HeapSort(arrList, iNum);
+        MergeSortList(arrList, iNum);
         for(int i=0; i<iNum; i++){
             printf("%d ", arrList[i]);
         }

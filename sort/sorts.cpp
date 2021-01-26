@@ -7,6 +7,7 @@ void PrintArray(int* const pArray, int start, int end) {
     }
     printf("\n");
 }
+
 // 冒泡排序算法
 void BubbleSort(int* const pArray, const int nLen){
     for(int i=0;i<nLen;i++) {
@@ -72,4 +73,44 @@ void HeapSort(int* const pArray, int n) {
         std::swap(pArray[i], pArray[0]);
         HeapAdjustDown(pArray, 0, i);
     }
+}
+
+//[start, mid) [mid, end)
+void SortTwoList(int* const pArray, int start, int mid, int end, int* const tArray) {
+    int i=start, j=mid, k=start;
+    while(i<mid && j<end) {
+        if(pArray[i] <= pArray[j]) {
+            tArray[k++]=pArray[i++];
+        } else {
+            tArray[k++]=pArray[j++];
+        }
+    }
+    while(i<mid) tArray[k++]=pArray[i++];
+    while(j<end) tArray[k++]=pArray[j++];
+    for(int t=start; t<end; t++) {
+        pArray[t] = tArray[t];
+    }
+}
+
+//[start, end)
+void MergeSort(int* const pArray, int start, int end, int* const tArray) {
+    if(start >= end-1) {
+        return ;
+    } else if(start == end -2) {
+        if(pArray[start] > pArray[end-1]) {
+            std::swap(pArray[start], pArray[end-1]);
+        }
+        return ;
+    }
+
+    int mid = (start+end)/2;
+    MergeSort(pArray, start, mid, tArray);
+    MergeSort(pArray, mid, end, tArray);
+
+    SortTwoList(pArray, start, mid, end, tArray);
+}
+
+void MergeSortList(int* const pArray, int nLen) {
+    int arrList[1000]={0};
+    MergeSort(pArray, 0,nLen, arrList);
 }
