@@ -21,6 +21,22 @@ void BubbleSort(int* const pArray, const int nLen){
     }
 }
 
+//  插入排序
+void InsertSort(int* pArray, const int nLen) {
+    for(int i=1; i<nLen; i++) {
+        int val=pArray[i];
+        int j=0;
+        for(j=i-1; j>=0; j--) {
+            if(pArray[j] > val ) {
+                pArray[j+1]=pArray[j];
+            } else {
+                break;
+            }
+        }
+        pArray[j+1]=val;
+    }
+}
+
 // 快速排序[start, end)
 void QuickSort(int* const pArray, int start, int end) {
     if(start >= end-1 ) {
